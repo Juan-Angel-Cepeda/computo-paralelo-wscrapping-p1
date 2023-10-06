@@ -1,7 +1,7 @@
 import threading
 import lyricsgenius as lg
 
-GENIUS_TOKEN = "8dcLtoFObmQ1Vc1SJgbWtc7lfE2E_M9k_JFDdq-4YNmxhp-vl6LbB9WC0wZuOvEx"
+GENIUS_TOKEN = "hbbR2NA8_o-1InmVM4KUcCfKtLRGcOyRqkL9waVpFHzJVs_6lWMcxuqLdntDAbaX"
 genius = lg.Genius(GENIUS_TOKEN)
 
 #API_GOOGLE_KEY = st.secrets["API_GOOGLE_KEY"]
