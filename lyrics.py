@@ -4,21 +4,16 @@ import lyricsgenius as lg
 GENIUS_TOKEN = "hbbR2NA8_o-1InmVM4KUcCfKtLRGcOyRqkL9waVpFHzJVs_6lWMcxuqLdntDAbaX"
 genius = lg.Genius(GENIUS_TOKEN)
 
-#API_GOOGLE_KEY = st.secrets["API_GOOGLE_KEY"]
-#ENGINE_ID = st.secrets["ENGINE_ID"]
-
-#extract_lyrics = SongLyrics(API_GOOGLE_KEY, ENGINE_ID)
-
 def go_for_my_lyrics(title):
-    song = genius.search_song(title=title)
-    lyrics = song.lyrics
-    return lyrics
+    artist = genius.search_artist(title, max_songs=1, sort="title")
+    return artist.songs
 
 
-def call_lyrics(songs):
-    threads = [threading.Thread(target=go_for_my_lyrics, args=(song,)) for song in songs]
-    for song in threads:
-        song.start()
+
+def call_lyrics(titles):
+    threads = [threading.Thread(target=go_for_my_lyrics, args=(title,)) for title in titles]
+    for thread in threads:
+        thread.start()
     
     my_lyrics = []
     for thread in threads:
