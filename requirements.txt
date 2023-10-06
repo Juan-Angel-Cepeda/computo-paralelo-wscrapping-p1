@@ -1,1 +1,1 @@
-lyrics-extractor==3.0.1
+lyricsgenius==3.0.1
