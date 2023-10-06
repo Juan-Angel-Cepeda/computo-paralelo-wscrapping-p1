@@ -2,8 +2,8 @@ from lyrics_extractor import SongLyrics
 import threading
 import streamlit as st
 
-API_GOOGLE_KEY = st.secrets["API_GOOGLE_KEY"]
-ENGINE_ID = st.secrets["ENGINE_ID"]
+API_GOOGLE_KEY = "AIzaSyBdGZhRkkiVoDAJCnVXYRmx_rN_CipceU8"
+ENGINE_ID = "34af664dee2774570"
 
 #for production
 #API_GOOGLE_KEY = st.secrets["API_GOOGLE_KEY"]
@@ -12,7 +12,9 @@ ENGINE_ID = st.secrets["ENGINE_ID"]
 extract_lyrics = SongLyrics(API_GOOGLE_KEY, ENGINE_ID)
 
 def go_for_my_lyrics(song):
+    
     lyrics = extract_lyrics.get_lyrics(song)
+        #lyrics = "Lyrics not found"
     return lyrics
 
 def call_lyrics(songs):

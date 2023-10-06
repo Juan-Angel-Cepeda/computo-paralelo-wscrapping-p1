@@ -18,4 +18,8 @@ for song in st.session_state.songs:
     st.divider()
 
 if st.button("Get my lyirics"):
-    ly.call_lyrics(st.session_state.songs)
+    lyrics_songs = ly.call_lyrics(st.session_state.songs)
+    for lyric in lyrics_songs:
+        st.markdown(f"### :blue[{lyric}]")
+        st.divider()
+
