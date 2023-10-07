@@ -16,7 +16,6 @@ def request(pokemon,pokedict,lock):
         abilities = {}
         vitals_tables = soup.find_all('table', class_='vitals-table',)
         abilities_table = vitals_tables[3]
-        print(abilities_table)
         for row in abilities_table.find_all('tr'):
             th = row.find('th')
             td = row.find('td',class_='cell-num')
@@ -30,7 +29,6 @@ def request(pokemon,pokedict,lock):
         
         return 
     else:
-        print(f'Error al obtener el código {response.status_code}')
         return
 
 def draw_stats(abilities):

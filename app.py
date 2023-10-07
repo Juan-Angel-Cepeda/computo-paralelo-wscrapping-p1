@@ -22,12 +22,14 @@ if st.button("Get my pokemons"):
     pokeinfo = pkdx.run_pokedex(st.session_state.pokemons)
     num_pokemons = len(pokeinfo)
     cols = st.columns(1)
-    for pokemon, info in enumerate(pokeinfo.items()):
+    cols = st.columns(len(st.session_state.pokemons))
+    
+    for i, (pokemon, info) in enumerate(pokeinfo.items()):
         name, image, type, abilities = info
         fig = pkdx.draw_stats(abilities)
-        cols[0].markdown(f"### {name}")
-        cols[0].image(image, caption=f"Image of {name}", use_column_width=True)
-        cols[0].markdown(f"### {type}")
-        cols[0].markdown(f"### Abilities")
-        cols[0].pyplot(fig)
-        cols[0].divider()
+        cols[i % 1].markdown(f"### {name}")
+        cols[i % 1].image(image, caption=f"Image of {name}", use_column_width=True)
+        cols[i % 1].markdown(f"### {type}")
+        cols[i % 1].markdown(f"### Abilities")
+        cols[i % 1].pyplot(fig)
+        cols[i % 1].divider()
