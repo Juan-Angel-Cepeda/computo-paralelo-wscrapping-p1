@@ -51,6 +51,9 @@ def draw_stats(abilities):
     ax.set_xticks(angles[:-1])
     ax.set_xticklabels(stats)
     
+    for angle, value, stat in zip(angles,values,stats):
+        ax.text(angle,value, str(value),color="black")
+    
     return fig
             
 def run_pokedex(pokemons):
