@@ -1,25 +1,31 @@
 import streamlit as st
-import lyrics as ly
+import pokedex as pkdx
 
-st.title("Get your Lyrics")
-new_song = st.markdown('''## :red[Add your songs]''')
-song = st.text_input(label="Add your song",label_visibility="hidden")
-add_song = st.button("Add my song")
+st.title("Welocme to pokeScrapper")
+new_pokemon = st.markdown('''## :red[Add the pokemons you want to know about]''')
+pokemon = st.text_input(label="Add your pokemon",label_visibility="hidden")
+add_pokemon = st.button("Go to pokedex")
 
-if 'songs' not in st.session_state:
-    st.session_state.songs = []
+if 'pokemons' not in st.session_state:
+    st.session_state.pokemons = []
 
-if add_song:
-    st.session_state.songs.append(song)
+if add_pokemon:
+    st.session_state.pokemons.append(pokemon)
 
-st.markdown("## :green[Your songs]")
-for song in st.session_state.songs:
-    st.markdown(f"### {song}")
+st.markdown("## :green[Your pokemons]")
+for pokemon in st.session_state.pokemons:
+    st.markdown(f"### {pokemon}")
     st.divider()
 
-if st.button("Get my lyirics"):
-    lyrics_songs = ly.call_lyrics(st.session_state.songs)
-    for lyric in lyrics_songs:
-        st.markdown(f"### :blue[{lyric}]")
-        st.divider()
+if st.button("Get my pokemons"):
+    pokeinfo = pkdx.run_pokedex(st.session_state.pokemons)
+    num_pokemons = len(pokeinfo)
+    cols = st.columns(3)
+    
+    for i, (pokemon, info) in enumerate(pokeinfo.items()):
+        name, image, type = info
+        cols[i % 3].markdown(f"### {name}")
+        cols[i % 3].image(image, caption=f"Image of {name}", use_column_width=True)
+        cols[i % 3].markdown(f"### Type: {type}")
+        cols[i % 3].divider()
 
