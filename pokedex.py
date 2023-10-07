@@ -34,17 +34,23 @@ def request(pokemon,pokedict,lock):
         return
 
 def draw_stats(abilities):
+    abilities = abilities.copy()
+    abilities.pop('Total',None)
     stats = list(abilities.keys())
     values = [int(val) for val in abilities.values()]
-    angles = np.linspace(0, 2*np.pi, len(stats), endpoint=False).tolist()
     values += values[:1]
+    num_stats = len(stats)
+    
+    angles = np.linspace(0, 2*np.pi,num_stats, endpoint=False).tolist()
     angles += angles[:1]
     
-    fig, ax = plt.subplots()
-    ax.plot(angles, values, color='blue', alpha=0.25)
+    fig, ax = plt.subplots(figsize=(6,6),subplot_kw={'polar':True})
+    ax.fill(angles,values,color="blue",alpha=0.25)
+
     ax.set_yticklabels([])
     ax.set_xticks(angles[:-1])
     ax.set_xticklabels(stats)
+    
     return fig
             
 def run_pokedex(pokemons):

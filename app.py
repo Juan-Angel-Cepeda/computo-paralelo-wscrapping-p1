@@ -26,9 +26,9 @@ if st.button("Get my pokemons"):
     for i, (pokemon, info) in enumerate(pokeinfo.items()):
         name, image, type, abilities = info
         fig = pkdx.draw_stats(abilities)
-        cols[i % 3].markdown(f"### {name}")
-        cols[i % 3].image(image, caption=f"Image of {name}", use_column_width=True)
-        cols[i % 3].markdown(f"### {type}")
-        cols[i % 3].markdown(f"### Abilities")
-        cols[i % 3].pyplot(fig)
-        cols[i % 3].divider()
+        cols[i % 2].markdown(f"### {name}")
+        cols[i % 2].image(image, caption=f"Image of {name}", use_column_width=True)
+        cols[i % 2].markdown(f"### {type}")
+        cols[i % 2].markdown(f"### Abilities")
+        cols[i % 2].pyplot(fig)
+        cols[i % 2].divider()
