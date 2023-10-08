@@ -13,10 +13,16 @@ if 'pokemons' not in st.session_state:
 if add_pokemon:
     st.session_state.pokemons.append(pokemon)
 
+
 st.markdown("## :green[Your pokemons]")
-for pokemon in st.session_state.pokemons:
-    st.image(pokeball, caption=pokemon, width=100)
-    st.divider()
+if add_pokemon and pokemon == "":
+    st.error("You have not added any pokemon")
+    st.session_state.pokemons.pop()
+else:
+    for pokemon in st.session_state.pokemons:
+        st.image(pokeball, caption=pokemon, width=100)
+        st.divider()
+
 
 if st.button("Get my pokemons"):
     pokeinfo = pkdx.run_pokedex(st.session_state.pokemons)
